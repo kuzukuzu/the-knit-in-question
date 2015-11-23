@@ -82,12 +82,12 @@ post '/prof-photo' do
     knit = Magick::Image.read(knit_file_path).first
 
     # 左右反転
-    if params[:dir] == -1
+    if params[:dir].to_i == -1
       knit.flop!
     end
 
     # 重ねあわせ
-    prof_photo.composite!(knit, params[:left], params[:top], Magick::OverCompositeOp)
+    prof_photo.composite!(knit, params[:left].to_i, params[:top].to_i, Magick::OverCompositeOp)
     new_prof_photo = prof_photo.to_blob
 
     @client.update_profile_image(new_prof_photo)
