@@ -12,7 +12,7 @@ def oauth_consumer
   OAuth::Consumer.new CONSUMER_KEY, CONSUMER_SECRET, site: 'https://api.twitter.com'
 end
 
-before %r{^/(prof-photo)$} do
+before %r{^/(prof-photo)?$} do
   if session[:access_token] && session[:access_token_secret]
     @authorized = true
 
