@@ -98,6 +98,8 @@ post '/prof-photo' do
   if params[:reset]
     @client.update_profile_image(open(@local_file_path, 'rb').read)
   end
+
+  redirect '/'
 end
 
 # routes for scss / coffee-script
