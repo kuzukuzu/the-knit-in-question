@@ -8,6 +8,7 @@ gem "slim"
 gem "coffee-script"
 gem "sass"
 
+gem "oauth"
 gem "twitter"
 
 group :development do

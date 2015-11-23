@@ -3,6 +3,7 @@ html
   head
     title the knit in question
     link rel='stylesheet' type='text/css' href='css/semantic.min.css'
+    link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
     link rel='stylesheet' type='text/css' href='stylesheets/common.css'
     script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"
     script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"
@@ -12,8 +13,14 @@ html
   body
     img#bg src="images/header.jpg"
     #wrapper.ui.grid
-      - unless @user
-        button Sign in with Twitter
+      - unless @authorized
+        .ten.wide.column
+          h1 Welcome to my app
+          p please getting started with the button
+        .six.wide.centered.column
+          a.ui.primary.button href="/auth" style="margin-top: 30px;"
+            i.fa.fa-twitter
+            |  Getting Started
 
       - else
         .ten.wide.column
