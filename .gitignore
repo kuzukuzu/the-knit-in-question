@@ -1,3 +1,5 @@
 .bundle
 vendor/bundle
 .sass-cache
+tmp/images/users/*
+!.gitkeep
