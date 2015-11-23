@@ -113,7 +113,7 @@ post '/prof-photo' do
   end
 
   if params[:reset]
-    @client.update_profile_image(open(@local_file_path, 'rb').read)
+    @client.update_profile_image(open(@local_file_path, 'r').read)
   end
 
   redirect '/'
