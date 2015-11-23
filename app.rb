@@ -5,7 +5,6 @@ require 'twitter'
 
 require 'digest/md5'
 require 'open-uri'
-require 'uri'
 
 enable :sessions
 
@@ -34,7 +33,7 @@ before %r{^/(prof-photo)?$} do
     @local_file_path = './public' + @prof_photo_url
 
     unless File.exist?(@local_file_path)
-      File.open(@local_file_path, 'wb') do |file|
+      open(@local_file_path, 'wb') do |file|
         file << open(remote_file_url).read
       end
     end
@@ -95,7 +94,7 @@ post '/prof-photo' do
   end
 
   if params[:reset]
-    @client.update_profile_image(File.open(@local_file_path, 'rb').read)
+    @client.update_profile_image(open(@local_file_path, 'rb').read)
   end
 end
 
