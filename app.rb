@@ -92,6 +92,7 @@ post '/prof-photo' do
 
     # 画像サイズをworkspaceと同じに
     prof_photo.resize!(272, 272)
+    knit.resize!(100, 100)
 
     # 左右反転
     if params[:dir].to_i == -1
