@@ -23,7 +23,8 @@ before %r{^/(prof-photo)?$} do
       config.access_token_secret  = session[:access_token_secret]
     end
 
-    @prof_photo_url = client.prof_image
+    # TODO get default icon?
+    @prof_photo_url = client.user.profile_image_uri_https
   end
 end
 
