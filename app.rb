@@ -1,7 +1,5 @@
 require 'sinatra'
 require 'sinatra/reloader' if development?
-require 'oauth'
-require 'twitter'
 
 require 'digest/md5'
 require 'open-uri'
