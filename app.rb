@@ -7,17 +7,27 @@ enable :sessions
 
 CONSUMER_KEY = ENV['CONSUMER_KEY']
 CONSUMER_SECRET = ENV['CONSUMER_SECRET']
-# client = Twitter::REST::Client.new do |config|
-#   config.consumer_key = CONSUMER_KEY
-#   config.consumer_secret = CONSUMER_SECRET
-# end
 
 def oauth_consumer
   OAuth::Consumer.new CONSUMER_KEY, CONSUMER_SECRET, site: 'https://api.twitter.com'
 end
 
+before %r{^/(prof-photo)$} do
+  if session[:access_token] && session[:access_token_secret]
+    @authorized = true
+
+    client = Twitter::REST::Client.new do |config|
+      config.consumer_key         = CONSUMER_KEY
+      config.consumer_secret      = CONSUMER_SECRET
+      config.access_token         = session[:access_token]
+      config.access_token_secret  = session[:access_token_secret]
+    end
+
+    @prof_photo_url = client.prof_image
+  end
+end
+
 get '/' do
-  @authorized = true if session[:access_token]
   slim :index
 end
 
@@ -47,6 +57,8 @@ get '/callback' do
 
   session[:access_token] = access_token.token
   session[:access_token_secret] = access_token.secret
+
+  redirect '/'
 end
 
 post '/prof-photo' do
