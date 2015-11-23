@@ -81,6 +81,9 @@ post '/prof-photo' do
     prof_photo = Magick::Image.read(@local_file_path).first
     knit = Magick::Image.read(knit_file_path).first
 
+    # 画像サイズをworkspaceと同じに
+    prof_photo.resize!(272, 272)
+
     # 左右反転
     if params[:dir].to_i == -1
       knit.flop!
@@ -88,6 +91,7 @@ post '/prof-photo' do
 
     # 重ねあわせ
     prof_photo.composite!(knit, params[:left].to_i, params[:top].to_i, Magick::OverCompositeOp)
+    prof_photo.format = "JPEG"
     new_prof_photo = prof_photo.to_blob
 
     @client.update_profile_image(new_prof_photo)
