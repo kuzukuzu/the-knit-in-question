@@ -26,8 +26,17 @@ before %r{^/(prof-photo)?$} do
 
     # save profile image to local
     # TODO get default icon?
-    remote_file_url = @client.user.profile_image_uri_https(:original)
-    @local_file_path = './tmp/images/users/' + @client.user.screen_name
+    # TODO 本当はちゃんと変更検知した方が良い
+    unless session[:remote_file_url]
+      session[:remote_file_url] = @client.user.profile_image_uri_https(:original)
+    end
+
+    unless session[:screen_name]
+      session[:screen_name] = @client.user.screen_name
+    end
+
+    remote_file_url = session[:remote_file_url]
+    @local_file_path = './tmp/images/users/' + session[:screen_name]
 
     unless File.exist?(@local_file_path)
       IO.copy_stream(open(remote_file_url), @local_file_path)
