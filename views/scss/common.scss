@@ -1,0 +1,54 @@
+body {
+  width: 100%;
+
+  img#bg {
+    -webkit-filter: blur(10px);
+    -moz-filter: blur(10px);
+    filter: blur(10px);
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+  }
+
+  // background-image: url('../images/header.jpg');
+  // background-position:center top;
+  // background-repeat:no-repeat;
+  // -moz-background-size:cover;
+  // background-size:cover;
+  color: #fff;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+#wrapper {
+  width: 800px;
+  margin: 100px auto 0;
+}
+#workspace {
+
+  position: relative;
+  overflow: hidden;
+
+  #knit {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 30px;
+    left: 130px;
+    // background-image: url('../images/knit.png');
+    // background-size:cover;
+    // -moz-background-size:cover;
+  }
+}
+
+.reversed {
+  -webkit-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+}
