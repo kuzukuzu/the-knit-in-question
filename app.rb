@@ -101,9 +101,14 @@ post '/prof-photo' do
     # 重ねあわせ
     prof_photo.composite!(knit, params[:left].to_i, params[:top].to_i, Magick::OverCompositeOp)
     prof_photo.format = "JPEG"
-    new_prof_photo = prof_photo.to_blob
+    # TODO screen_name_knitさんがいたら挙動がおかしくなるが、面倒なので対応しない
+    #   よりエレガントにやるならbinary -> stringの変換を施すべき
+    new_prof_photo_path = './tmp/images/users/' + session[:screen_name] + '_knit'
+    open(new_prof_photo_path, 'wb') do |f|
+      f << prof_photo.to_blob
+    end
 
-    @client.update_profile_image(new_prof_photo)
+    @client.update_profile_image(open(new_prof_photo_path, 'r'))
   end
 
   if params[:reset]
