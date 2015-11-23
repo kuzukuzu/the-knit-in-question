@@ -5,6 +5,7 @@ require 'twitter'
 
 require 'digest/md5'
 require 'open-uri'
+require 'uri'
 
 enable :sessions
 
@@ -28,12 +29,14 @@ before %r{^/(prof-photo)?$} do
 
     # save profile image to local
     # TODO get default icon?
+    remote_file_url = @client.user.profile_image_uri_https(:original)
     @prof_photo_url = '/images/users/' + @client.user.screen_name
     @local_file_path = './public' + @prof_photo_url
-    remote_file_url = @client.user.profile_image_uri_https(:original)
 
     unless File.exist?(@local_file_path)
-      IO.copy_stream(open(remote_file_url), @local_file_path)
+      File.open(@local_file_path, 'wb') do |file|
+        file << open(remote_file_url).read
+      end
     end
   end
 end
