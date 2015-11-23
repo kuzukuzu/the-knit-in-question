@@ -24,7 +24,7 @@ before %r{^/(prof-photo)?$} do
     end
 
     # TODO get default icon?
-    @prof_photo_url = client.user.profile_image_uri_https
+    @prof_photo_url = client.user.profile_image_uri_https(:original)
   end
 end
 
