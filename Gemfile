@@ -10,6 +10,7 @@ gem "sass"
 
 gem "oauth"
 gem "twitter"
+gem "rmagick", require: 'RMagick'
 
 group :development do
   gem "sinatra-contrib"
