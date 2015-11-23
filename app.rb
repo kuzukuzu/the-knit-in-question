@@ -29,14 +29,16 @@ before %r{^/(prof-photo)?$} do
     # save profile image to local
     # TODO get default icon?
     remote_file_url = @client.user.profile_image_uri_https(:original)
-    @prof_photo_url = '/images/users/' + @client.user.screen_name
-    @local_file_path = './public' + @prof_photo_url
+    @local_file_path = './tmp/images/users/' + @client.user.screen_name
 
     unless File.exist?(@local_file_path)
-      open(@local_file_path, 'wb') do |file|
-        file << open(remote_file_url).read
-      end
+      IO.copy_stream(open(remote_file_url), @local_file_path)
+      # open(@local_file_path, 'wb') do |file|
+      #   file << open(remote_file_url).read
+      # end
     end
+
+    @prof_photo_url = remote_file_url
   end
 end
 
