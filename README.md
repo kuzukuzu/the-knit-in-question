@@ -1,4 +1,5 @@
 # the-knit-in-question
+joke app for my laboratory members.
 
 ## TODO
 - DB使ったほうがいいよね
