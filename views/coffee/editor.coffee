@@ -17,16 +17,16 @@ $ ->
     $inputDir.val((currentDir - 0) * -1)
 
   # ajax post
-  $('form').submit (event)->
-    event.preventDefault()
-
-    $form = $(this)
+  $('input[type=submit]').click (event)->
+    $buttonName = $(this).attr('name')
+    $buttonVal = $(this).attr('value')
+    $form = $(this).closest('form')
     $dimmer = $('ui dimmer')
 
     $.ajax
       url: $form.attr('action')
       type: $form.attr('method')
-      data: $form.serialize()
+      data: $form.serialize() + '&' + $buttonName + '=' + $buttonVal
       beforeSend: (xhr, settings)->
         $dimmer.addClass 'active'
       complete: (xhr, textStatus)->

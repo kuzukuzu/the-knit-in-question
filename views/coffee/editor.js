@@ -17,15 +17,16 @@ $(function() {
     currentDir = $inputDir.val();
     return $inputDir.val((currentDir - 0) * -1);
   });
-  return $('form').submit(function(event) {
-    var $dimmer, $form;
-    event.preventDefault();
-    $form = $(this);
+  return $('input[type=submit]').click(function(event) {
+    var $buttonName, $buttonVal, $dimmer, $form;
+    $buttonName = $(this).attr('name');
+    $buttonVal = $(this).attr('value');
+    $form = $(this).closest('form');
     $dimmer = $('ui dimmer');
     return $.ajax({
       url: $form.attr('action'),
       type: $form.attr('method'),
-      data: $form.serialize(),
+      data: $form.serialize() + '&' + $buttonName + '=' + $buttonVal,
       beforeSend: function(xhr, settings) {
         return $dimmer.addClass('active');
       },

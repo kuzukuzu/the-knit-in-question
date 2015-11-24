@@ -54,4 +54,6 @@ p {
 
 #message-success, #message-fail {
   display: none;
+  position: fixed;
+  top: 300px;
 }
