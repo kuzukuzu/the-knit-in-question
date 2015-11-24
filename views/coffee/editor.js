@@ -19,6 +19,7 @@ $(function() {
   });
   return $('input[type=submit]').click(function(event) {
     var $buttonName, $buttonVal, $dimmer, $form;
+    event.preventDefault();
     $buttonName = $(this).attr('name');
     $buttonVal = $(this).attr('value');
     $form = $(this).closest('form');

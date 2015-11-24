@@ -18,6 +18,8 @@ $ ->
 
   # ajax post
   $('input[type=submit]').click (event)->
+    event.preventDefault()
+
     $buttonName = $(this).attr('name')
     $buttonVal = $(this).attr('value')
     $form = $(this).closest('form')
