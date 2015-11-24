@@ -8,6 +8,7 @@ html
     script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"
     script src='js/semantic.min.js'
     script src='javascripts/editor.js'
+    script src='javascripts/animate.js'
     - if @tutorial_f
       script src='javascripts/tutorial.js'
 
@@ -24,8 +25,8 @@ html
             | Getting Started
 
       - else
-        .ten.wide.column
-          h1 The Knit in Question
+        .ten.wide.column#title-text
+          h1 例の帽子
           p it's red, stylish, and mother handmade
         .six.wide.column
           .ui.card
@@ -36,17 +37,17 @@ html
               input type="hidden" name="top" value="30"
               input type="hidden" name="left" value="130"
               input type="hidden" name="dir" value="1"
-              input.ui.button type="submit" name="reset" value="Reset Original"
+              input.ui.button type="submit" name="reset" value="Reset Original" data-content="元のアイコンに戻す" data-variation="basic"
               .or
-              input.ui.positive.button type="submit" name="apply" value="Apply"
+              input.ui.positive.button type="submit" name="apply" value="Apply" data-content="帽子をかぶせる" data-variation="basic"
 
     .ui.modal
-      .header How to Use
+      .header This is icon changer
       .image.content
         img.image src="images/knit.png"
         .description
-          p Drag and Drop: move the knit
-          p Double Click: flop the knit
+          p ドラッグ & ドロップ: 帽子の移動
+          p ダブルクリック: 帽子の反転
       .actions
         .ui.positive.right.labeled.icon.button
           | OK

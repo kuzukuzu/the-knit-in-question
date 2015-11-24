@@ -21,10 +21,18 @@ p {
   font-size: 18px;
 }
 
+#title-text {
+  display: none;
+}
+
 #wrapper {
   width: 800px;
   margin: 100px auto 0;
   color: #fff;
+
+  .ui.card {
+    display: none;
+  }
 }
 #workspace {
 

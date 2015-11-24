@@ -17,6 +17,7 @@ $(function() {
     currentDir = $inputDir.val();
     return $inputDir.val((currentDir - 0) * -1);
   });
+  $('input[type=submit]').popup();
   return $('input[type=submit]').click(function(event) {
     var $buttonName, $buttonVal, $dimmer, $form;
     event.preventDefault();

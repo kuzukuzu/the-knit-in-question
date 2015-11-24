@@ -16,6 +16,9 @@ $ ->
     currentDir = $inputDir.val()
     $inputDir.val((currentDir - 0) * -1)
 
+  # popup tips の初期化
+  $('input[type=submit]').popup()
+
   # ajax post
   $('input[type=submit]').click (event)->
     event.preventDefault()

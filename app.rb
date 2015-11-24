@@ -52,6 +52,9 @@ before %r{^/(prof-photo)?$} do
 end
 
 get '/' do
+  @authorized = true
+  @prof_photo_url = '/images/U8iLalXR.jpeg'
+  @tutorial_f = true
   slim :index
 end
 

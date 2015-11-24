@@ -1,2 +1,2 @@
 $ ->
-  $('.ui.modal').modal('show')
+  setTimeout "$('.ui.modal').modal('show');", 3000
