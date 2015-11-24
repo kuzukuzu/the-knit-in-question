@@ -35,14 +35,16 @@ before %r{^/(prof-photo)?$} do
       session[:screen_name] = @client.user.screen_name
     end
 
+    unless session[:tutorial]
+      session[:tutorial] = true
+      @tutorial_f = true
+    end
+
     remote_file_url = session[:remote_file_url]
     @local_file_path = './tmp/images/users/' + session[:screen_name]
 
     unless File.exist?(@local_file_path)
       IO.copy_stream(open(remote_file_url), @local_file_path)
-      # open(@local_file_path, 'wb') do |file|
-      #   file << open(remote_file_url).read
-      # end
     end
 
     @prof_photo_url = remote_file_url

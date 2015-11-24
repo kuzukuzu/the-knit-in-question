@@ -3,12 +3,13 @@ html
   head
     title the knit in question
     link rel='stylesheet' type='text/css' href='css/semantic.min.css'
-    link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
     link rel='stylesheet' type='text/css' href='stylesheets/common.css'
     script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"
     script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"
     script src='js/semantic.min.js'
     script src='javascripts/editor.js'
+    - if @tutorial_f
+      script src='javascripts/tutorial.js'
 
   body
     img#bg src="images/header.jpg"
@@ -19,7 +20,7 @@ html
           p please getting started with the button
         .six.wide.centered.column
           a.ui.primary.button href="/auth" style="margin-top: 30px;"
-            i.fa.fa-twitter
+            i.twitter.icon
             |  Getting Started
 
       - else
@@ -31,7 +32,6 @@ html
             #workspace.image
               img#prof-photo src="#{@prof_photo_url}"
               img#knit src="images/knit.png"
-              /* div#knit */
             form.ui.two.bottom.attached.buttons action="/prof-photo" method="POST"
               input type="hidden" name="top" value="30"
               input type="hidden" name="left" value="130"
@@ -39,3 +39,15 @@ html
               input.ui.button type="submit" name="reset" value="Reset Original"
               .or
               input.ui.positive.button type="submit" name="apply" value="Apply"
+
+    .ui.modal
+      .header How to Use
+      .image.content
+        img.image src="images/knit.png"
+        .description
+          p Drag and Drop: move the knit
+          p Double Click: flop the knit
+      .actions
+        .ui.positive.right.labeled.icon.button
+          | OK
+          i.checkmark.icon
