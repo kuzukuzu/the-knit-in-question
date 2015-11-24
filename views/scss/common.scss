@@ -51,3 +51,7 @@ p {
   filter: FlipH;
   -ms-filter: "FlipH";
 }
+
+#message-success, #message-fail {
+  display: none;
+}

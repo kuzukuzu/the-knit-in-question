@@ -15,3 +15,25 @@ $ ->
     $(this).toggleClass("reversed")
     currentDir = $inputDir.val()
     $inputDir.val((currentDir - 0) * -1)
+
+  # ajax post
+  $('form').submit (event)->
+    event.preventDefault()
+
+    $form = $(this)
+    $dimmer = $('ui dimmer')
+
+    $.ajax
+      url: $form.attr('action')
+      type: $form.attr('method')
+      data: $form.serialize()
+      beforeSend: (xhr, settings)->
+        $dimmer.addClass 'active'
+      complete: (xhr, textStatus)->
+        $dimmer.removeClass 'active'
+      success: (result, textStatus, xhr)->
+        $('#message-success').transition 'scale'
+        setTimeout("$('#message-success').transition('fade');", 3000)
+      error: (result, textStatus, xhr)->
+        $('#message-error').transition 'scale'
+        setTimeout("$('#message-error').transition('fade');", 3000)

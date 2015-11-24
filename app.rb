@@ -118,7 +118,7 @@ post '/prof-photo' do
     @client.update_profile_image(open(@local_file_path, 'r'))
   end
 
-  redirect '/'
+  "{'message': 'ok'}"
 end
 
 # routes for scss / coffee-script

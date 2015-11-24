@@ -11,10 +11,35 @@ $(function() {
       return $inputLeft.val(ui.position.left);
     }
   });
-  return $('#knit').dblclick(function() {
+  $('#knit').dblclick(function() {
     var currentDir;
     $(this).toggleClass("reversed");
     currentDir = $inputDir.val();
     return $inputDir.val((currentDir - 0) * -1);
+  });
+  return $('form').submit(function(event) {
+    var $dimmer, $form;
+    event.preventDefault();
+    $form = $(this);
+    $dimmer = $('ui dimmer');
+    return $.ajax({
+      url: $form.attr('action'),
+      type: $form.attr('method'),
+      data: $form.serialize(),
+      beforeSend: function(xhr, settings) {
+        return $dimmer.addClass('active');
+      },
+      complete: function(xhr, textStatus) {
+        return $dimmer.removeClass('active');
+      },
+      success: function(result, textStatus, xhr) {
+        $('#message-success').transition('scale');
+        return setTimeout("$('#message-success').transition('fade');", 3000);
+      },
+      error: function(result, textStatus, xhr) {
+        $('#message-error').transition('scale');
+        return setTimeout("$('#message-error').transition('fade');", 3000);
+      }
+    });
   });
 });
